@@ -1,7 +1,7 @@
 # gdg-next
 A Google Developer Group Cochin project.
 
-##STACK USED
+##-->STACK USED<--
 
 ###Back End : Node Js + Express JS
 ###Database : MySql
