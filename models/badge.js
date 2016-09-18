@@ -2,9 +2,9 @@ var mongoose   = require('mongoose');
 
 
 var badgeSchema = new mongoose.Schema({
-    badgeid  : String,
-    badgeimg : String,
-    badgetxt : String
+    badgeid  : { type:String,required : true, unique : true },
+    badgeimg : { type:String, required :true, unique : true },
+    badgename : String
 
 });
 

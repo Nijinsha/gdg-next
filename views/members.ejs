@@ -8,5 +8,12 @@
     </head>
     <body>
         <p>This the cards page</p>
+        <% members.forEach(function(members){ %>
+            <h3><%= members.username %></h3>
+            <h3><%= members.name %></h3>
+            <h3><%= members.github %></h3>
+            <h3><%= members.location %> hhhh</h3>
+        
+       <% }); %>
     </body>
 </html>

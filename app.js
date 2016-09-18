@@ -40,13 +40,30 @@ app.get('/',function(req,res){
 
 //members
 app.get('/members',function(req,res){
-    res.render('members');
+    
+    member.find({},function(err,members){
+             if(!err){
+                res.render('members',{
+                    members : members
+                });
+             }
+         });
 });
 
 //profile
 app.get('/members/:id',function(req,res){
-     console.log(req.params.id);
-     //get the details from the db and give to .ejs
+     member.find({username : req.params.id},function(err,result){
+            if(!err){
+                if(result.username){
+                console.log(result);
+                return res.render('profile',{
+                    result : result
+                });}
+                else {
+                    res.render('404');
+                }
+            }
+     });
 });
 
 //login
@@ -69,7 +86,35 @@ app.get('/admin',isLoggedIn,function(req,res){
 
 //admin post
 app.post('/admin',isLoggedIn,function(req,res){
-    console.log(req.body);
+    var intomember = new member({
+        username : req.body.username,
+        name     : req.body.name,
+        github   : req.body.github,
+        twitter  : req.body.twitter,
+        jobtitle : req.body.job,
+        location : req.body.location 
+    });
+    intomember.save(function(err){
+        if(!err){
+         console.log("done");
+         
+         return res.end();       
+                 
+      }
+        console.log(err);
+        
+
+    });
+    var intobadge= new badge ({
+        badgeid : req.params.badgeid,
+        badgeimg: req.params.badgeimg,
+        badgetxt : req.params.badgetxt
+    }) ;
+    intobadge.save(function(err,datas){
+        if(!err){
+            res.end();
+        }
+    });
 });
 
 //register
@@ -117,3 +162,4 @@ function isLoggedIn(req,res,next){
 app.listen(3000,function(){
    console.log("Server running at 3000"); 
 });
+

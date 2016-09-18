@@ -8,12 +8,26 @@
     </head>
     <body>
         admin page
-        <h2>Add Student</h2>
-        <form action='/add'menthod="POST">
+        <h2>Add member</h2>
+        <form action='/admin' method="POST">
             <input type="text" name="username"  placeholder="username">
-            <input type="text" name="name"      placeholder="full name"
-            <input type="file" name="userimage"  >
+            <input type="text" name="name"      placeholder="full name">
+            <input type="text" name="github"   placeholder="github id">
+            <input type="text" name="twitter"  placeholder="twitter id">
+            <input type="text" name="location"  placeholder="location">
+            <input type="text" name="job"  placeholder="jobtitle">
+
+            <button>add member</button>
+            
         </form>
+        <h2>Add badge</h2>
+         <form action='/admin' method="POST">
+            <input type="text" name="badgeid"  placeholder="badgeid">
+            <input type="text" name="badgeimg"      placeholder="img url">
+            <input type="text" name="badgename"   placeholder="text">
+
+            <button>add badge</button>
+
         <ul>
             <li><a href="/logout">logout</a></li>
         </ul>    
