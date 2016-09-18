@@ -7,7 +7,7 @@ var certificate     = require('./models/certificate')
 var badge           = require('./models/badge')
 var passport        = require('passport');
 var localStrategy   = require('passport-local');
-var skey            = 'codename123';
+var skey            = 'codename';
 
 app.set('view engine','ejs');
 
@@ -19,7 +19,7 @@ mongoose.connect('mongodb://localhost/gdg');
 app.use('/',express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('express-session')({
-    secret : "May god help us in security",
+    secret : "Secret word goes here in production",
     resave :false,
     saveUninitialized :false}));
     app.use(passport.initialize());
@@ -90,6 +90,10 @@ app.post('/register',function(req,res){
                                                     res.redirect('/login');
                                  });
                              }); 
+    }
+    else{
+        console.log("err");
+        res.end();
     }
     
 });
