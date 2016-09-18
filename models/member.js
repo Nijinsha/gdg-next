@@ -10,18 +10,18 @@ var memberSchema = new mongoose.Schema ({
    github       : String,
    twitter      : String,
    gmail        : String,
-   badges       : [{
+   /*badges       : [{
                     type : mongoose.Schema.Types.badgeid,
                     ref : 'user'
-                   }],
+                   }],*/
    jobtitle     : String,
    location     : String,
    achievements : String,
    skills       : String,
-   certificates : [{
+   /*certificates : [{
                     type : mongoose.Schema.Types.certificateid,
                     ref : 'certificate'
-                    }]
+                    }]*/
 });
 
 
