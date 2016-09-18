@@ -7,8 +7,9 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-        <h1> <%= result[0].name %> </h1>
-        <h1><a href='https://github.com/<%= result[0].github %>'>github</a> </h1>
-        <h1> <%= result[0].twitter %> </h1>        
+        <h1> <%= result.name %> </h1>
+        <h1><a href='https://github.com/<%= result.github %>'>github</a> </h1>
+        <h1> <%= result.twitter %> </h1>   
+        <h3> <%= result.badges %> </h3>     
     </body>
 </html>

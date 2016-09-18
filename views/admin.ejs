@@ -9,19 +9,26 @@
     <body>
         admin page
         <h2>Add member</h2>
-        <form action='/admin' method="POST">
+        <form action='/addmember' method="POST">
             <input type="text" name="username"  placeholder="username">
             <input type="text" name="name"      placeholder="full name">
             <input type="text" name="github"   placeholder="github id">
             <input type="text" name="twitter"  placeholder="twitter id">
             <input type="text" name="location"  placeholder="location">
             <input type="text" name="job"  placeholder="jobtitle">
+            <select name="dropdown">
+                <% badges.forEach(function(badges){ %>
+                 <option value= "<%= badges.badgeid %>"><%= badges.badgeid %></option>
+                <% }) %>
+            <option value="Cheese">Old Cheese</option>
+           
+            </select>
 
             <button>add member</button>
             
         </form>
         <h2>Add badge</h2>
-         <form action='/admin' method="POST">
+         <form action='/addbadge' method="POST">
             <input type="text" name="badgeid"  placeholder="badgeid">
             <input type="text" name="badgeimg"      placeholder="img url">
             <input type="text" name="badgename"   placeholder="text">

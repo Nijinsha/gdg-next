@@ -1,4 +1,6 @@
 var mongoose   = require('mongoose');
+var badge       = require('./badge');
+
 
 
 
@@ -10,10 +12,10 @@ var memberSchema = new mongoose.Schema ({
    github       : String,
    twitter      : String,
    gmail        : String,
-   /*badges       : [{
-                    type : mongoose.Schema.Types.badgeid,
-                    ref : 'user'
-                   }],*/
+   badges       : [{
+                    type : String
+                    
+                   }],
    jobtitle     : String,
    location     : String,
    achievements : String,

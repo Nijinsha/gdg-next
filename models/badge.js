@@ -8,5 +8,7 @@ var badgeSchema = new mongoose.Schema({
 
 });
 
+ var badge = mongoose.model("badge",badgeSchema);
 
-module.exports = mongoose.model("badge",badgeSchema);
+
+module.exports = badge;

@@ -52,18 +52,14 @@ app.get('/members',function(req,res){
 
 //profile
 app.get('/members/:id',function(req,res){
-     member.find({username : req.params.id},function(err,result){
-            if(!err){
-                if(result.username){
-                console.log(result);
-                return res.render('profile',{
-                    result : result
-                });}
-                else {
-                    res.render('404');
-                }
-            }
-     });
+    var username = req.params.id;
+    member.findOne({ username : username },function(err,result){
+       if(!err){
+           res.render('profile',{
+               result : result
+           })
+       }
+    });
 });
 
 //login
@@ -81,38 +77,59 @@ app.post('/login',passport.authenticate('local',{
 
 //admin page
 app.get('/admin',isLoggedIn,function(req,res){
-    res.render('admin');
+   
+    badge.find({},function(err,badges){
+            if(!err){
+                 console.log(badges);
+                 res.render('admin',{
+                     badges : badges
+                 });
+            }
+    });
 });
 
 //admin post
-app.post('/admin',isLoggedIn,function(req,res){
+app.post('/addmember',isLoggedIn,function(req,res){
+    
     var intomember = new member({
         username : req.body.username,
         name     : req.body.name,
         github   : req.body.github,
         twitter  : req.body.twitter,
         jobtitle : req.body.job,
-        location : req.body.location 
+        location : req.body.location,
+        badges   : req.body.dropdown
+        
     });
-    intomember.save(function(err){
+    intomember.save(function(err,datas){
         if(!err){
          console.log("done");
          
-         return res.end();       
+         return res.redirect('admin');       
                  
       }
         console.log(err);
         
 
     });
-    var intobadge= new badge ({
-        badgeid : req.params.badgeid,
-        badgeimg: req.params.badgeimg,
-        badgetxt : req.params.badgetxt
-    }) ;
+    
+});
+//add badge
+app.post('/addbadge',isLoggedIn,function(req,res){
+        var intobadge= new badge ({
+        badgeid : req.body.badgeid,
+        badgeimg: req.body.badgeimg,
+        badgetxt : req.body.badgetxt
+        });
+   
+    console.log(req.params);
     intobadge.save(function(err,datas){
         if(!err){
-            res.end();
+            
+           return res.redirect('/admin');
+        }
+        else{
+            console.log(err);
         }
     });
 });
