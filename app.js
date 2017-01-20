@@ -13,7 +13,7 @@ app.set('view engine','ejs');
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/gdg');
+mongoose.connect('0.0.0.0:27017/gdg');
 
 
 app.use('/',express.static(__dirname + '/public'));
